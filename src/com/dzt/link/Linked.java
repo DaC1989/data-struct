@@ -1,14 +1,20 @@
 package com.dzt.link;
 
+/**
+ * 单链表的反转
+ * 链表中环的检测
+ * 两个有序的链表的合并
+ * 删除链表倒数第n个节点
+ * 求链表的中间节点
+ * @param <T>
+ */
 public class Linked<T> {
-	
-	public Linked() {}
 	
 	private Node<T> first;
 	
 	private Node<T> last;
 	
-	private int size;
+	private int size = 0;
 	
 	/**
 	 * 添加链表元素
@@ -17,12 +23,11 @@ public class Linked<T> {
 	public void add(T t) {
 		Node<T> node = new Node<>(t);
 		if(first == null) {
-			node.setIndex(0);
 			first = node;
 			last = node;
 		} else {
-			node.setIndex(last.getIndex() + 1);
 			last.setNext(node);
+			last = node;
 		}
 		size++;
 	}
@@ -34,39 +39,25 @@ public class Linked<T> {
 	 */
 	public Node<T> get(int index) {
 		if(index < 0) return null;
+
 		return getByIndex(first, index);
 	}
 	
 	private Node<T> getByIndex(Node<T> node, int index) {
-		if(node == null) return null;
-		if(node.getIndex() == index)
-			return node;
-		else 
-			return getByIndex(node.getNext(), index);
+		return null;
 	}
 	
 	private class Node<T> {
-		private T t;
-		
-		private Node<T> next;
-		
-		private int index;
-		
-		public Node(T t) {
+		T t;
+
+		Node<T> next;
+
+		Node(T t) {
 			this.t = t;
 		}
-		public void setIndex(int index) {
-			this.index = index;
-		}
-		public int getIndex() {
-			return this.index;
-		}
-		public void setNext(Node<T> next) {
+		void setNext(Node<T> next) {
 			this.next = next;
-		}
-		public Node<T> getNext() {
-			return this.next;
-		}
+		};
 	}
 
 }
