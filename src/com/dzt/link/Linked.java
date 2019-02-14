@@ -24,7 +24,9 @@ public class Linked<T> {
 		Node<T> node = new Node<>(t);
 		if(first == null) {
 			first = node;
+			first.next = node;
 			last = node;
+			last.next = node;
 		} else {
 			last.setNext(node);
 			last = node;
@@ -37,14 +39,18 @@ public class Linked<T> {
 	 * @param index
 	 * @return
 	 */
-	public Node<T> get(int index) {
+	public T get(int index) {
 		if(index < 0) return null;
-
-		return getByIndex(first, index);
+		Node<T> node = first;
+		for(int i = 0; i < index; i++) {
+			node = node.next;
+		}
+		return node.t;
 	}
 	
-	private Node<T> getByIndex(Node<T> node, int index) {
-		return null;
+	public void remove(int index) {
+		if(index < 0) return ;
+		
 	}
 	
 	private class Node<T> {
@@ -57,7 +63,7 @@ public class Linked<T> {
 		}
 		void setNext(Node<T> next) {
 			this.next = next;
-		};
+		}
 	}
 
 }
